@@ -4,7 +4,24 @@
 const Stack = require('../lib/Stack')
 
 function calcDistance(stack, a, b) {
-  // your code here
+  const temp = new Stack();
+  let posA = -1;
+  let posB = -1;
+  let pos = 0;
+
+  while (!stack.isEmpty()) {
+    const element = stack.pop();
+    if (element === a) posA = pos;
+    if (element === b) posB = pos;
+    temp.push(element);
+    pos++;
+  }
+
+  while (!temp.isEmpty()) {
+    stack.push(temp.pop());
+  }
+
+  return Math.abs(posA - posB);
 }
 
 const students = new Stack()
